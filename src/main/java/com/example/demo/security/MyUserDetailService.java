@@ -1,8 +1,7 @@
-package com.example.demo.security.BankCardManagementSystems.config;
+package com.example.demo.security;
 
-import com.example.demo.entity.BankCardManagementSystems.User;
-import com.example.demo.repository.BankCardManagementSystems.UserRepository;
-import lombok.NoArgsConstructor;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

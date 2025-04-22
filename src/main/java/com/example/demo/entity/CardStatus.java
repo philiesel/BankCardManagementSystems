@@ -1,4 +1,4 @@
-package com.example.demo.entity.BankCardManagementSystems;
+package com.example.demo.entity;
 
 public enum CardStatus {
     ACTIVE,

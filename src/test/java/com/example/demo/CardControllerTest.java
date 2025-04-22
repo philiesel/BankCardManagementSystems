@@ -1,15 +1,12 @@
-package com.example.demo.BankCardManagementSystems;
+package com.example.demo;
 
-import com.example.demo.controller.BankCardManagementSystems.CardManagementController;
-import com.example.demo.entity.BankCardManagementSystems.CardEntity;
-import com.example.demo.entity.BankCardManagementSystems.CardStatus;
-import com.example.demo.service.BankCardManagementSystems.CardManagementService;
-import com.jayway.jsonpath.JsonPath;
-import org.glassfish.jaxb.core.v2.TODO;
+import com.example.demo.controller.CardController;
+import com.example.demo.entity.CardEntity;
+import com.example.demo.entity.CardStatus;
+import com.example.demo.service.CardManagementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,7 +19,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.example.demo.entity.BankCardManagementSystems.CardStatus.BLOCKED;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -38,7 +34,7 @@ public class CardControllerTest {
     @MockitoBean
     private CardManagementService cardManagementService;
     @InjectMocks
-    private CardManagementController cardController;
+    private CardController cardController;
 
     @BeforeEach
     public void setUp() {

@@ -1,8 +1,8 @@
-package com.example.demo.controller.BankCardManagementSystems;
+package com.example.demo.controller;
 
-import com.example.demo.entity.BankCardManagementSystems.CardEntity;
-import com.example.demo.entity.BankCardManagementSystems.dto.CardDto;
-import com.example.demo.service.BankCardManagementSystems.CardManagementService;
+import com.example.demo.dto.CardDto;
+import com.example.demo.entity.CardEntity;
+import com.example.demo.service.CardManagementService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1")
 @RequiredArgsConstructor
-public class CardManagementController {
+public class CardController {
     private final CardManagementService cardManagementService;
 
     @ResponseStatus(HttpStatus.CREATED)

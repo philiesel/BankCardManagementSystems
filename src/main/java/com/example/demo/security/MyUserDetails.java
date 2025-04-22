@@ -1,10 +1,9 @@
-package com.example.demo.security.BankCardManagementSystems.config;
+package com.example.demo.security;
 
-import com.example.demo.entity.BankCardManagementSystems.User;
+import com.example.demo.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -28,5 +27,9 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return user.getUsername();
+    }
+
+    public String getEmail(){
+        return user.getEmail();
     }
 }

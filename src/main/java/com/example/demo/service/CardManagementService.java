@@ -1,8 +1,8 @@
-package com.example.demo.service.BankCardManagementSystems;
+package com.example.demo.service;
 
-import com.example.demo.entity.BankCardManagementSystems.CardEntity;
-import com.example.demo.entity.BankCardManagementSystems.CardStatus;
-import com.example.demo.repository.BankCardManagementSystems.CardRepository;
+import com.example.demo.entity.CardEntity;
+import com.example.demo.entity.CardStatus;
+import com.example.demo.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
