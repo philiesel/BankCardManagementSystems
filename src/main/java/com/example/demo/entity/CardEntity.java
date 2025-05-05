@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,5 +28,12 @@ public class CardEntity {
     @Enumerated(EnumType.STRING)
     private CardStatus status;
     private BigDecimal balance;
-    //  private List<TransactionEntity> transactions;
+    @OneToMany
+    private List<TransactionEntity> transactionEntity;
+    @ManyToOne
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_limit_id")
+    private CardLimit cardLimit;
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,9 +20,9 @@ public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private CardEntity card;
-    private BigDecimal amount;
-    private Enum transactionType;
+    private String fromCard;
+    private String toCard;
+    private BigDecimal amountTransfer;
+    private String status;
     private LocalDateTime timestamp;
 }

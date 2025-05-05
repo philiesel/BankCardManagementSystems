@@ -46,17 +46,19 @@ public class WebSecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("api/v1/auth/registration").permitAll()
-                        .requestMatchers(
-                                "/v3/api-docs/**",
-                                "/swagger-ui.html",
-                                "/swagger-ui/**",
-                                "/webjars/**"
-                        ).authenticated()
-                        .anyRequest().permitAll()
+                                .requestMatchers("/api/v1/auth/**").authenticated()
+                                .requestMatchers("/api/v1/admin/cards/create").permitAll()
+//                        .requestMatchers("/api/v1/auth/registration").permitAll()
+//                        .requestMatchers("/api/v1/admin/cards/create").permitAll()
+//                        .requestMatchers(
+//                                "/v3/api-docs/**",
+//                                "/swagger-ui.html",
+//                                "/swagger-ui/**",
+//                                "/webjars/**"
+                                .anyRequest().permitAll()
                 )
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .build();
     }
 

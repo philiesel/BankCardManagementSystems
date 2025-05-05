@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.*;
-import com.example.demo.entity.CardEntity;
 import com.example.demo.entity.User;
 import com.example.demo.service.AdminService;
 import jakarta.validation.Valid;
@@ -21,8 +20,8 @@ import static java.lang.String.format;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("api/v1/admin")
-public class AdminController {
+@RequestMapping("api/v1/admin/users")
+public class AdminUserController {
     private final AdminService adminService;
 
     /**
@@ -30,8 +29,8 @@ public class AdminController {
      *
      * @return созданного пользователя
      */
-    @PostMapping("users/add")
-    public ResponseEntity<ResponseCreateUserDto> addUser(@Valid @RequestBody RequestCreatUserDto payload) {
+    @PostMapping("/create")
+    public ResponseEntity<ResponseCreateUserDto> createUser(@Valid @RequestBody RequestCreatUserDto payload) {
         User createdUser = adminService.createUser(payload);
         ResponseCreateUserDto responseUser = new ResponseCreateUserDto(createdUser);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -46,7 +45,7 @@ public class AdminController {
      *
      * @return список всех пользователей
      */
-    @GetMapping("/users")
+    @GetMapping("/show-users")
     public ResponseEntity<List<User>> getAllUsers() { //TODO пагинация
         List<User> allUsers = adminService.getAllUsers();
         return ResponseEntity.ok(allUsers);
@@ -57,7 +56,7 @@ public class AdminController {
      *
      * @return пользователь с данным email
      */
-    @GetMapping("/users/{email}")
+    @GetMapping("/{email}")
     public ResponseEntity<?> getUserByEmail(@PathVariable @NotNull String email) {
         try {
             User user = adminService.getUserByEmail(email);
@@ -73,7 +72,7 @@ public class AdminController {
      *
      * @return пользователь с обновленными данными
      */
-    @PatchMapping("/users/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @Valid @RequestBody UpdateUserDto updateUserDto) {
         User user = adminService.updateUser(id, updateUserDto);
         return ResponseEntity.ok().body(user);
@@ -84,7 +83,7 @@ public class AdminController {
      *
      * @return удаляемый пользователь
      */
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
         try {
             User deleteUser = adminService.deleteUser(id);
@@ -93,5 +92,4 @@ public class AdminController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
-
 }

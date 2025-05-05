@@ -1,8 +1,11 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
@@ -33,5 +36,6 @@ public class User {
     @Column(nullable = false)
     @NotNull(message = "Пароль пользователя обязательно")
     private String password;
-    //TODO остальной функционал
+    @OneToMany(mappedBy = "user")
+    private List<CardEntity> cards;
  }

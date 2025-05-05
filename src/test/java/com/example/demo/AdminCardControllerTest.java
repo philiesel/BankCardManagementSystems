@@ -1,9 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.controller.CardController;
+import com.example.demo.controller.AdminCardController;
 import com.example.demo.entity.CardEntity;
 import com.example.demo.entity.CardStatus;
-import com.example.demo.service.CardManagementService;
+import com.example.demo.service.AdminCardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -28,13 +28,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CardControllerTest {
+public class AdminCardControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockitoBean
-    private CardManagementService cardManagementService;
+    private AdminCardService adminCardService;
     @InjectMocks
-    private CardController cardController;
+    private AdminCardController cardController;
 
     @BeforeEach
     public void setUp() {
@@ -51,7 +51,7 @@ public class CardControllerTest {
         cardEntity.setExpiryDate(parsedDate);
         cardEntity.setStatus(CardStatus.ACTIVE);
         cardEntity.setBalance(BigDecimal.valueOf(0));
-        when(cardManagementService.createCard(any(CardEntity.class))).thenReturn(cardEntity);
+        //when(adminCardService.createCard(any(CardEntity.class))).thenReturn(cardEntity);
         mockMvc.perform(post("/api/v1/createCard")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"cardholderName\":\"John\", " +
@@ -76,7 +76,7 @@ public class CardControllerTest {
         cardEntity2.setStatus(CardStatus.BLOCKED);
         cardEntity2.setBalance(BigDecimal.valueOf(100));
 
-        when(cardManagementService.getCardById(1L)).thenReturn(cardEntity2);
+        when(adminCardService.getCardById(1L)).thenReturn(cardEntity2);
         mockMvc.perform(get("/api/v1/getCard/1"))
                 .andExpect(status().isOk()) // 200
                 .andExpect(jsonPath("$.cardholderName").value("Marta"))
@@ -86,7 +86,7 @@ public class CardControllerTest {
 
     @Test
     public void deleteCardById() throws Exception{
-        doNothing().when(cardManagementService).deleteCardById(1L);
+        doNothing().when(adminCardService).deleteCardById(1L);
         mockMvc.perform(delete("/api/v1/deleteCard/1"))
                 .andExpect(status().isNoContent()); 
     }
